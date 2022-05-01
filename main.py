@@ -6,17 +6,11 @@ def Release(ver) -> str:
     return release[0]
 
 
-def ubuntu():
+def ubuntu():#wo qv zhao yi xia docker
     files = open('/etc/apt/sources.list', 'w')
-    files.write('''deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
-''')
+    sou = files.read()
+    sou = sou.replace('archive.ubuntu.com','mirrors.aliyun.com')
+    files.write(sou)
     files.close()
     return os.popen('apt update').read()
 
